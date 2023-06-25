@@ -1,0 +1,16 @@
+program Notezz_p;
+
+uses
+  Vcl.Forms,
+  Main_u in 'Main_u.pas' {frmMain},
+  Saves_u in 'Saves_u.pas' {frmSaves};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmSaves, frmSaves);
+  Application.Run;
+end.

@@ -1,0 +1,64 @@
+unit Main_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.jpeg,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Notes_u;
+
+type
+  TfrmMain = class(TForm)
+    Image1: TImage;
+    lblTitle: TLabel;
+    lblTitle2: TLabel;
+    lbxRecords: TListBox;
+    lblRecall: TLabel;
+    btnCreate: TButton;
+    procedure btnCreateClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMain.btnCreateClick(Sender: TObject);
+begin
+ frmNotes.Showmodal;
+end;
+
+procedure TfrmMain.FormActivate(Sender: TObject);
+var
+ Textfiles: Textfile;
+ sLine: string;
+ iCount: integer;
+begin
+ iCount := 0;
+
+ if FileExists ('Textfiles.txt') = True then
+  begin
+   Assignfile(TextFiles, 'Textfiles.txt');
+  end
+  else begin
+   Showmessage('File no found');
+   Exit;
+  end;
+
+ Reset(TextFiles);
+ while not EOF (TextFiles) do
+  begin
+   Readln(TextFiles, sLine);
+   lbxRecords.Items[iCount] := sLine;
+  end;
+
+end;
+
+end.
